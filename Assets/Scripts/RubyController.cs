@@ -1,12 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class RubyController : MonoBehaviour
 {
     public float speed = 3.0f;
     
     public int maxHealth = 5;
+
+    public int score;
+    public TMP_Text scoreText;
+    public GameObject winTextObject;
     
     public GameObject projectilePrefab;
     
@@ -28,7 +34,9 @@ public class RubyController : MonoBehaviour
     Vector2 lookDirection = new Vector2(1,0);
     
     AudioSource audioSource;
-    
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +46,11 @@ public class RubyController : MonoBehaviour
         currentHealth = maxHealth;
 
         audioSource = GetComponent<AudioSource>();
+
+        score = 0;
+        SetScoreText();
+
+        winTextObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -126,5 +139,24 @@ public class RubyController : MonoBehaviour
     public void PlaySound(AudioClip clip)
     {
         audioSource.PlayOneShot(clip);
+    }
+
+    //score counter
+    public void ChangeScore(int scoreAmount)
+    {
+        score += scoreAmount;
+        SetScoreText();
+    }
+
+    //score display
+    void SetScoreText()
+    {
+        scoreText.text = "Robots Fixed: " + score.ToString();
+
+        //display win screen
+        if (score >= 2)
+        {
+            winTextObject.SetActive(true);
+        }
     }
 }

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 581587350279702578}
   m_Layer: 0
   m_Name: Bot
-  m_TagString: Untagged
+  m_TagString: EnemyController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,7 +106,7 @@ MonoBehaviour:
   speed: 0
   vertical: 0
   changeTime: 3
-  smokeEffect: {fileID: 481800594168106399, guid: bf99e1f8c03beaf48877400a11e9af57, type: 3}
+  smokeEffect: {fileID: 2029796994255708267}
 --- !u!61 &1578725766763912338
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -363,6 +363,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf99e1f8c03beaf48877400a11e9af57, type: 3}
+--- !u!198 &2029796994255708267 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 481800594168106399, guid: bf99e1f8c03beaf48877400a11e9af57, type: 3}
+  m_PrefabInstance: {fileID: 1910927616201862644}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8101683185472137462 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7703987035209483522, guid: bf99e1f8c03beaf48877400a11e9af57, type: 3}

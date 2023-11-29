@@ -16,13 +16,27 @@ using UnityEngine;
     bool broken = true;
     
     Animator animator;
-    
+
+    private RubyController rubyController;
+
     // Start is called before the first frame update
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         timer = changeTime;
         animator = GetComponent<Animator>();
+
+        GameObject rubyControllerObject = GameObject.FindWithTag("RubyController");
+        if (rubyControllerObject != null)
+        {
+            rubyController = rubyControllerObject.GetComponent<RubyController>();
+            print("Found the RubyController script");
+        }
+
+        if (rubyControllerObject == null)
+        {
+            print("Cannot find RubyController script");
+        }
     }
 
     void Update()
@@ -77,15 +91,18 @@ using UnityEngine;
             player.ChangeHealth(-1);
         }
     }
-    
+
+
     //Public because we want to call it from elsewhere like the projectile script
     public void Fix()
     {
         broken = false;
+
         rigidbody2D.simulated = false;
-        //optional if you added the fixed animation
         animator.SetTrigger("Fixed");
         
         smokeEffect.Stop();
+
+        rubyController.ChangeScore(1);
     }
 }
