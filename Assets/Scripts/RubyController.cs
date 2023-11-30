@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class RubyController : MonoBehaviour
@@ -13,6 +14,7 @@ public class RubyController : MonoBehaviour
     public int score;
     public TMP_Text scoreText;
     public GameObject winTextObject;
+    public GameObject loseTextObject;
     
     public GameObject projectilePrefab;
     
@@ -51,6 +53,7 @@ public class RubyController : MonoBehaviour
         SetScoreText();
 
         winTextObject.SetActive(false);
+        loseTextObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -110,13 +113,16 @@ public class RubyController : MonoBehaviour
     {
         if (amount < 0)
         {
+            
             if (isInvincible)
                 return;
             
             isInvincible = true;
             invincibleTimer = timeInvincible;
-            
+
+           
             PlaySound(hitSound);
+
         }
         
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
@@ -127,7 +133,7 @@ public class RubyController : MonoBehaviour
     void Launch()
     {
         GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
-
+       
         Projectile projectile = projectileObject.GetComponent<Projectile>();
         projectile.Launch(lookDirection, 300);
 
@@ -158,5 +164,7 @@ public class RubyController : MonoBehaviour
         {
             winTextObject.SetActive(true);
         }
+        
     }
+    
 }
